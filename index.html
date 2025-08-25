@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas Online Úteis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background: #6e8efb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        button:hover {
+            background: #5a7df9;
+        }
+        
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            min-height: 50px;
+            word-break: break-all;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: #333;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ferramentas Online Úteis</h1>
+        <p>Utilize nossas ferramentas gratuitas para seu dia a dia</p>
+    </header>
+    
+    <div class="container">
+        <div class="tools-grid">
+            <!-- Gerador de Senhas -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h2>Gerador de Senhas</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <label for="password-length">Tamanho da senha:</label>
+                        <input type="number" id="password-length" min="6" max="30" value="12">
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="uppercase" checked> Incluir letras maiúsculas
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="numbers" checked> Incluir números
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="symbols"> Incluir símbolos
+                        </label>
+                    </div>
+                    <button onclick="generatePassword()">Gerar Senha</button>
+                    <div class="result" id="password-result"></div>
+                </div>
+            </div>
+            
+            <!-- Contador de Caracteres -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h2>Contador de Caracteres</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <label for="text-input">Digite ou cole seu texto:</label>
+                        <textarea id="text-input" rows="5" placeholder="Digite seu texto aqui..."></textarea>
+                    </div>
+                    <button onclick="countCharacters()">Contar Caracteres</button>
+                    <div class="result" id="character-result">
+                        <p>Caracteres: 0</p>
+                        <p>Palavras: 0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conversor de Texto -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h2>Conversor de Texto</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <label for="converter-input">Digite ou cole seu texto:</label>
+                        <textarea id="converter-input" rows="5" placeholder="Digite seu texto aqui..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <button onclick="convertToUpper()">Converter para MAIÚSCULAS</button>
+                        <button onclick="convertToLower()">Converter para minúsculas</button>
+                    </div>
+                    <div class="result" id="converter-result"></div>
+                </div>
+            </div>
+            
+            <!-- Calculadora Simples -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <h2>Calculadora</h2>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="number" id="num1" placeholder="Primeiro número">
+                    </div>
+                    <div class="input-group">
+                        <select id="operation">
+                            <option value="add">Somar (+)</option>
+                            <option value="subtract">Subtrair (-)</option>
+                            <option value="multiply">Multiplicar (×)</option>
+                            <option value="divide">Dividir (÷)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="num2" placeholder="Segundo número">
+                    </div>
+                    <button onclick="calculate()">Calcular</button>
+                    <div class="result" id="calculator-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Ferramentas Online Úteis &copy; 2023 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Gerador de Senhas
+        function generatePassword() {
+            const length = document.getElementById('password-length').value;
+            const includeUppercase = document.getElementById('uppercase').checked;
+            const includeNumbers = document.getElementById('numbers').checked;
+            const includeSymbols = document.getElementById('symbols').checked;
+            
+            let charset = 'abcdefghijklmnopqrstuvwxyz';
+            if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeNumbers) charset += '0123456789';
+            if (includeSymbols) charset += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            
+            document.getElementById('password-result').textContent = password;
+        }
+        
+        // Contador de Caracteres
+        function countCharacters() {
+            const text = document.getElementById('text-input').value;
+            const charCount = text.length;
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            
+            document.getElementById('character-result').innerHTML = `
+                <p>Caracteres: ${charCount}</p>
+                <p>Palavras: ${wordCount}</p>
+            `;
+        }
+        
+        // Conversor de Texto
+        function convertToUpper() {
+            const text = document.getElementById('converter-input').value;
+            document.getElementById('converter-result').textContent = text.toUpperCase();
+        }
+        
+        function convertToLower() {
+            const text = document.getElementById('converter-input').value;
+            document.getElementById('converter-result').textContent = text.toLowerCase();
+        }
+        
+        // Calculadora
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            
+            let result;
+            switch(operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    result = num2 !== 0 ? num1 / num2 : 'Erro: divisão por zero';
+                    break;
+                default:
+                    result = 'Operação inválida';
+            }
+            
+            document.getElementById('calculator-result').textContent = `Resultado: ${result}`;
+        }
+        
+        // Atualizar contador de caracteres em tempo real
+        document.getElementById('text-input').addEventListener('input', countCharacters);
+    </script>
+</body>
+</html>
